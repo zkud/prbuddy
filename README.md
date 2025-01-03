@@ -1,2 +1,2 @@
-# prbuddy
-PR Review AI Assistant
+# prbuddy -- Pull Request Review AI Assistant
+
