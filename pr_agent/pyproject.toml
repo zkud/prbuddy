@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pr-agent"
+version = "0.1.0"
+description = ""
+authors = ["zkud <anton.kudyrka@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+langchain = "^0.3.17"
+langchain-ollama = "^0.2.3"
+langchain-core = "^0.3.33"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
