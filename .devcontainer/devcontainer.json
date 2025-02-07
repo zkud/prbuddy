@@ -1,4 +1,7 @@
 {
 	"name": "Python",
-	"dockerFile": "../pr_agent/Dockerfile"
+	"dockerComposeFile": "../compose.yaml",
+	"service": "pr_agent",
+	"shutdownAction": "stopCompose",
+	"workspaceFolder": "/workspace/pr_agent"
 }

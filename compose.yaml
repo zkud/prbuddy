@@ -1,4 +1,12 @@
 services:
+  pr_agent:
+    container_name: pr_agent
+    build: ./pr_agent
+    command: sleep infinity
+    volumes:
+      # Mount the root folder that contains .git
+      - .:/workspace:cached
+
   ollama:
     volumes:
       - ollama:/root/.ollama
