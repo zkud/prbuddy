@@ -2,7 +2,11 @@ services:
   llm_proxy:
     container_name: llm_proxy 
     build: ./llm_proxy
-    command: sleep infinity
+    ports:
+      - "8000:8000"
+    # command: sleep infinity for debugging
+    command: sh -c "poetry install --no-root && poetry run fastapi run app/main.py"
+    working_dir: /workspace/llm_proxy/
     volumes:
       # Mount the root folder that contains .git
       - .:/workspace:cached
@@ -14,8 +18,8 @@ services:
     pull_policy: always
     restart: unless-stopped
     image: ollama/ollama:0.5.7
-    ports:
-      - "11434:11434"  # Expose Ollama on the default port 
+    expose:
+      - "11434"  # Expose Ollama on the default port 
     post_start:
       - command: ollama pull llama3.1:8b 
         user: root
