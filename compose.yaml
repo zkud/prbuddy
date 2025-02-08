@@ -1,7 +1,7 @@
 services:
-  pr_agent:
-    container_name: pr_agent
-    build: ./pr_agent
+  llm_proxy:
+    container_name: llm_proxy 
+    build: ./llm_proxy
     command: sleep infinity
     volumes:
       # Mount the root folder that contains .git

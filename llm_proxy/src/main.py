@@ -15,7 +15,7 @@ def load_llm():
     return llm
 
 @app.get("/") 
-async def main_route():     
+async def main_route():
   return {"message": llm.invoke([HumanMessage(content="Hi!")])}
 
 llm = load_llm()
