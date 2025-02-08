@@ -1,5 +1,8 @@
 from langchain_ollama import OllamaLLM
 from langchain_core.messages import HumanMessage
+from fastapi import FastAPI
+
+app = FastAPI()
 
 def load_llm():
     llm = OllamaLLM(
@@ -11,6 +14,8 @@ def load_llm():
     )
     return llm
 
-if __name__ == "__main__":
-    llm = load_llm()
-    print(llm.invoke([HumanMessage(content="Hi!")]))
+@app.get("/") 
+async def main_route():     
+  return {"message": llm.invoke([HumanMessage(content="Hi!")])}
+
+llm = load_llm()
