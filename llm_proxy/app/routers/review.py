@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from asyncio import gather
 from logging import getLogger, StreamHandler
 
@@ -40,12 +40,15 @@ async def review_changes(diff: Diff) -> Review:
         review_file(file)
         for file in diff.files
     ))
+    file_reviews = list(filter(lambda x: x is not None, file_reviews))
     LOG.info('review finished')
     return Review(files=file_reviews)
 
 
-async def review_file(file: File) -> FileReview:
+async def review_file(file: File) -> Optional[FileReview]:
     review = await llm.review_file(file.changes)
+    if review is None:
+        return None
     return FileReview(
         name=file.name,
         review=review
