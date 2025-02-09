@@ -21,7 +21,7 @@ services:
     expose:
       - "11434"  # Expose Ollama on the default port 
     post_start:
-      - command: ollama pull llama3.1:8b 
+      - command: ollama pull deepseek-r1:1.5b
         user: root
 
 volumes:

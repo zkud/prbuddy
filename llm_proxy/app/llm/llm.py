@@ -22,12 +22,12 @@ LOG = getLogger(__name__)
 class LLMService:
     def __init__(self):
         self.__llm = ChatOllama(
-            model="llama3.1:8b",
+            model="deepseek-r1:1.5b",
             base_url="http://ollama:11434",  # Default base URL for Ollama
             temperature=0.3,  # Lower creativity for concise responses
             top_p=0.5,        # Adjust diversity slightly
             max_tokens=5000,  # Limit the length of responses
-        ).with_structured_output(Review)
+        ).with_structured_output(Review, method="json_schema")
 
     async def review_file(self, changes: str) -> Optional[str]:
         LOG.info('start file reviewing')
