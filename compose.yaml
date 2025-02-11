@@ -1,4 +1,20 @@
 services:
+  configuration_db:
+    image: mongo:8.0
+    restart: always
+    expose:
+      - '27017'
+    env_file:
+      - ./configuration_db/.env
+  
+  configuration_db_control:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    env_file:
+      - ./configuration_db/.env
+
   llm_proxy:
     container_name: llm_proxy 
     build: ./llm_proxy
