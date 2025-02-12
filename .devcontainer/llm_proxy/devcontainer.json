@@ -1,5 +1,5 @@
 {
-	"name": "Python",
+	"name": "LLM Proxy",
 	"dockerComposeFile": "../../compose.yaml",
 	"service": "llm_proxy",
 	"shutdownAction": "stopCompose",

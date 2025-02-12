@@ -1,0 +1,7 @@
+{
+	"name": "Configuration",
+	"dockerComposeFile": "../../compose.yaml",
+	"service": "configuration",
+	"shutdownAction": "stopCompose",
+	"workspaceFolder": "/workspace/configuration"
+}

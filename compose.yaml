@@ -1,4 +1,16 @@
 services:
+  configuration:
+    container_name: configuration 
+    build: ./configuration
+    ports:
+      - 8000:8000
+    command: sleep infinity
+    # command: sh -c "poetry install --no-root && poetry run fastapi run app/main.py"
+    working_dir: /workspace/configuration/
+    volumes:
+      # Mount the root folder that contains .git
+      - .:/workspace:cached
+
   configuration_db:
     image: mongo:8.0
     restart: always
@@ -18,8 +30,8 @@ services:
   llm_proxy:
     container_name: llm_proxy 
     build: ./llm_proxy
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     # command: sleep infinity for debugging
     command: sh -c "poetry install --no-root && poetry run fastapi run app/main.py"
     working_dir: /workspace/llm_proxy/
